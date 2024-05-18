@@ -28,4 +28,30 @@ class Piece {
       }
     }
   }
+
+  void moveDown() {
+    move(0, 1);
+  }
+
+  void move(int dx, int dy) {
+    if (!checkCollision(x + dx, y + dy, shape)) {
+      x += dx;
+      y += dy;
+    }
+  }
+
+  boolean checkCollision(int newX, int newY, int[][] newShape) {
+    for (int i = 0; i < newShape.length; i++) {
+      for (int j = 0; j < newShape[i].length; j++) {
+        if (newShape[i][j] != 0) {
+          int posX = newX + j;
+          int posY = newY + i;
+          if (posX < 0 || posX >= grid.cols || posY >= grid.rows) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
 }

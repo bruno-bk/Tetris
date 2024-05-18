@@ -2,6 +2,9 @@ int blockSize = 30;
 int cols = 10;
 int rows = 18;
 
+int speed = 30;
+int counter = speed;
+
 Grid mainGrid = new Grid(blockSize, cols, rows, 0, 0);
 Grid nextPieceGrid = new Grid(blockSize, 4, 3, 12*blockSize, 6*blockSize);
 
@@ -22,11 +25,17 @@ int[][] randomPiece() {
 }
 
 void drawGameScreen() {
-  mainGrid.draw();
-  nextPieceGrid.draw();
-
-  currentPiece.draw();
-  nextPiece.draw();
+  if(++counter >= speed) {
+    background(0);
+    mainGrid.draw();
+    nextPieceGrid.draw();
+  
+    currentPiece.draw();
+    nextPiece.draw();
+  
+    counter = 0;
+    currentPiece.moveDown();
+  }
 }
 
 void setup() {
@@ -34,6 +43,5 @@ void setup() {
 }
 
 void draw() {
-  background(0);
   drawGameScreen();
 }
