@@ -46,6 +46,14 @@ class Grid {
     }
   }
   
+  void reset() {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        grid[i][j] = 0;
+      }
+    }
+  }
+  
   void update() {
     for (int i = 0; i < rows; i++) {
       boolean removeLine = true;
