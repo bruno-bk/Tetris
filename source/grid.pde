@@ -45,4 +45,24 @@ class Grid {
       }
     }
   }
+  
+  void update() {
+    for (int i = 0; i < rows; i++) {
+      boolean removeLine = true;
+      for (int j = 0; j < cols; j++) {
+        if(grid[i][j] == 0){
+          removeLine = false;
+        }
+      }
+
+      if(removeLine){
+        i--;
+        for (int k = i; k >= 0; k--) {
+          for (int l = 0; l < cols; l++) {
+            grid[k+1][l] = grid[k][l];
+          }
+        }
+      }
+    }
+  }
 }

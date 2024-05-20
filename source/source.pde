@@ -54,6 +54,7 @@ void drawGameScreen() {
     currentPiece = nextPiece;
     currentPiece.changeGrid(mainGrid);
     nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
+    mainGrid.update();
   }
 }
 
