@@ -46,12 +46,28 @@ class Piece {
         if (newShape[i][j] != 0) {
           int posX = newX + j;
           int posY = newY + i;
-          if (posX < 0 || posX >= grid.cols || posY >= grid.rows) {
+          if (posX < 0 || posX >= grid.cols || posY >= grid.rows || (posY >= 0 && grid.grid[posY][posX] != 0)) {
             return true;
           }
         }
       }
     }
     return false;
+  }
+  
+  boolean checkCollisionBelow(){
+   for (int i = 0; i < shape.length; i++) {
+      for (int j = 0; j < shape[i].length; j++) {
+        if (shape[i][j] != 0) {
+          int posX = x + j;
+          int posY = y + i + 1;
+
+          if (posY >= grid.rows || (posY >= 0 && grid.grid[posY][posX] != 0)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false; 
   }
 }

@@ -32,9 +32,15 @@ void drawGameScreen() {
   
     currentPiece.draw();
     nextPiece.draw();
-  
+    
     counter = 0;
     currentPiece.moveDown();
+    
+    if(currentPiece.checkCollisionBelow()) {
+      currentPiece = nextPiece;
+      currentPiece.changeGrid(mainGrid);
+      nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
+    }
   }
 }
 
