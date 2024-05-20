@@ -24,4 +24,25 @@ class Grid {
       }
     }
   }
+  
+  void drawSavedPieces() {
+    fill(color(255, 0, 0));
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        if (grid[i][j] != 0) {
+          rect(j * blockSize, i * blockSize, blockSize, blockSize);
+        }
+      }
+    }
+  }
+  
+  void savePieceInGrid(Piece piece){
+    for (int i = 0; i < piece.shape.length; i++) {
+      for (int j = 0; j < piece.shape[i].length; j++) {
+        if (piece.shape[i][j] != 0) {
+          grid[piece.y + i][piece.x + j] = 1;
+        }
+      }
+    }
+  }
 }

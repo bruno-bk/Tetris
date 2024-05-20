@@ -28,6 +28,7 @@ void drawGameScreen() {
   if(++counter >= speed) {
     background(0);
     mainGrid.draw();
+    mainGrid.drawSavedPieces();
     nextPieceGrid.draw();
   
     currentPiece.draw();
@@ -37,6 +38,7 @@ void drawGameScreen() {
     currentPiece.moveDown();
     
     if(currentPiece.checkCollisionBelow()) {
+      mainGrid.savePieceInGrid(currentPiece);
       currentPiece = nextPiece;
       currentPiece.changeGrid(mainGrid);
       nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
