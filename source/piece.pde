@@ -32,11 +32,31 @@ class Piece {
   void moveDown() {
     move(0, 1);
   }
+  
+  void moveLeft() {
+    move(-1, 0);
+  }
+  
+  void moveHight() {
+    move(1, 0);
+  }
 
   void move(int dx, int dy) {
     if (!checkCollision(x + dx, y + dy, shape)) {
       x += dx;
       y += dy;
+    }
+  }
+  
+  void rotate() {
+    int[][] newShape = new int[shape[0].length][shape.length];
+    for (int i = 0; i < shape.length; i++) {
+      for (int j = 0; j < shape[i].length; j++) {
+        newShape[j][shape.length - 1 - i] = shape[i][j];
+      }
+    }
+    if (!checkCollision(x, y, newShape)) {
+      shape = newShape;
     }
   }
 

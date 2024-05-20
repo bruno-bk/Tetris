@@ -36,26 +36,30 @@ void game_texts() {
 }
 
 void drawGameScreen() {
-  if(++counter >= speed) {
-    background(0);
-    game_texts();
-    mainGrid.draw();
-    mainGrid.drawSavedPieces();
-    nextPieceGrid.draw();
+  background(0);
+  game_texts();
+  mainGrid.draw();
+  mainGrid.drawSavedPieces();
+  nextPieceGrid.draw();
+
+  currentPiece.draw();
+  nextPiece.draw();
   
-    currentPiece.draw();
-    nextPiece.draw();
-    
-    counter = 0;
-    currentPiece.moveDown();
-    
-    if(currentPiece.checkCollisionBelow()) {
-      pieces_counter++;
-      mainGrid.savePieceInGrid(currentPiece);
-      currentPiece = nextPiece;
-      currentPiece.changeGrid(mainGrid);
-      nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
-    }
+  counter = 0;
+  currentPiece.moveDown();
+  
+  if(currentPiece.checkCollisionBelow()) {
+    pieces_counter++;
+    mainGrid.savePieceInGrid(currentPiece);
+    currentPiece = nextPiece;
+    currentPiece.changeGrid(mainGrid);
+    nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
+  }
+}
+
+void gameLoop(){
+  if(++counter >= speed) {
+    drawGameScreen();
   }
 }
 
@@ -64,5 +68,19 @@ void setup() {
 }
 
 void draw() {
-  drawGameScreen();
+  gameLoop();
+}
+
+void keyPressed() {
+  if(scren == screns.GAME){
+    if (keyCode == LEFT) {
+      currentPiece.moveLeft();
+    } else if (keyCode == RIGHT) {
+      currentPiece.moveHight();
+    } else if (keyCode == ' ') {
+      currentPiece.rotate();
+    }
+
+    drawGameScreen();
+  }
 }
