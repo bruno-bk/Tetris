@@ -62,6 +62,10 @@ void drawGameScreen() {
     if(currentPiece.checkCollisionBelow()){
       gamoOver = true;
     }
+    
+    if(pieces_counter % 5 == 0 && speed > 10){
+      speed--;
+    }
   }
 }
 
@@ -94,6 +98,7 @@ void resetGame(){
   pieces_counter = 0;
   gamoOver = false;
   mainGrid.reset();
+  speed = 30;
   counter = speed;
 }
 
