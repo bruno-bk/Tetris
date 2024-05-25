@@ -6,35 +6,51 @@ enum screns {
   CREDITS
 }
 
-screns scren = screns.GAME;
-
+screns scren = screns.MENU;
+PImage imgMenu,imgConfig,imgCredito;
+  
 void setup() {
   size(540, 540);
+  imgMenu = loadImage("..\\img\\tela_menu.png");
+  imgConfig = loadImage("..\\img\\tela_config.png");
+  imgCredito = loadImage("..\\img\\tela_credito.png");
 }
 
+
 void draw() {
+  
   if(scren == screns.MENU){
     background(255);
+    image(imgMenu, 0, 0);
     
   } else if(scren == screns.RULES){
     background(255);
+    image(imgConfig, 0, 0);
 
   } else if (scren == screns.GAME){ 
-    gameLoop();
-    if(isGameOver()){
-      scren = screns.GAMEOVER;
-      drawGameOverScreen();
-    }
-    
-  } else if(scren == screns.CREDITS){
+      gameLoop();
+      if(isGameOver()){
+        scren = screns.GAMEOVER;
+        drawGameOverScreen();
+      }
+   } else if(scren == screns.CREDITS){
     background(255);
+    image(imgCredito, 0, 0);
   }
 }
 
 void mousePressed() {
   if (scren == screns.MENU) {
-    resetGame();
-    scren = screns.GAME;
+    if(mouseX > 187 && mouseX < 187 + 163  && mouseY > 198 && mouseY < 198 + 40){//JOGAR
+    println("Botão Jogar pressionado");
+      resetGame();
+      scren = screns.GAME;
+    } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 270 && mouseY < 270+40){//REGRAS
+      scren = screns.RULES;
+    } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 160 && mouseY < 340+40){//CREDITO
+      scren = screns.CREDITS;
+    }    
+    
   
   } else if (scren == screns.RULES) {
     scren = screns.MENU;
