@@ -30,7 +30,7 @@ class Grid {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
         if (grid[i][j] != 0) {
-          rect(j * blockSize, i * blockSize, blockSize, blockSize);
+          image(sprites[grid[i][j]-1], j * blockSize, i * blockSize);
         }
       }
     }
@@ -40,7 +40,7 @@ class Grid {
     for (int i = 0; i < piece.shape.length; i++) {
       for (int j = 0; j < piece.shape[i].length; j++) {
         if (piece.shape[i][j] != 0) {
-          grid[piece.y + i][piece.x + j] = 1;
+          grid[piece.y + i][piece.x + j] = piece.spriteIndex;
         }
       }
     }

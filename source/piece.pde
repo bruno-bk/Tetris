@@ -3,6 +3,7 @@ class Piece {
   int colorP;
   int x;
   int y;
+  int spriteIndex;
   Grid grid;
 
   Piece(int[][] shape, int colorP, Grid grid) {
@@ -10,6 +11,7 @@ class Piece {
     this.colorP = colorP;
     this.x = grid.cols / 2 - shape[0].length / 2;
     this.y = 0;
+    this.spriteIndex = int(random(1, sprites.length+1));
     this.grid = grid;
   }
 
@@ -23,7 +25,7 @@ class Piece {
     for (int i = 0; i < shape.length; i++) {
       for (int j = 0; j < shape[i].length; j++) {
         if (shape[i][j] != 0) {
-          rect((x + j) * blockSize + grid.originX, (y + i) * blockSize + grid.originY, blockSize, blockSize);
+          image(sprites[this.spriteIndex-1], (x + j) * blockSize + grid.originX, (y + i) * blockSize + grid.originY);
         }
       }
     }

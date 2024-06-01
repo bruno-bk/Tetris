@@ -8,6 +8,7 @@ enum screns {
 
 screns scren = screns.MENU;
 PImage imgMenu,imgConfig,imgCredito;
+PImage[] sprites = new PImage[6];
   
 void setup() {
   size(540, 540);
@@ -15,6 +16,9 @@ void setup() {
   imgMenu = loadImage("..\\img\\tela_menu.png");
   imgConfig = loadImage("..\\img\\tela_config.png");
   imgCredito = loadImage("..\\img\\tela_credito.png");
+  for (int i = 0; i < sprites.length; i++) {
+    sprites[i] = loadImage("..\\img\\sprite" + str(i+1) + ".jpg");
+  }
 }
 
 void draw() {
