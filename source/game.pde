@@ -47,26 +47,6 @@ void drawGameScreen() {
 
   currentPiece.draw();
   nextPiece.draw();
-  
-  counter = 0;
-  currentPiece.moveDown();
-  
-  if(currentPiece.checkCollisionBelow()) {
-    pieces_counter++;
-    mainGrid.savePieceInGrid(currentPiece);
-    currentPiece = nextPiece;
-    currentPiece.changeGrid(mainGrid);
-    nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
-    mainGrid.update();
-    
-    if(currentPiece.checkCollisionBelow()){
-      gamoOver = true;
-    }
-    
-    if(pieces_counter % 5 == 0 && speed > 10){
-      speed--;
-    }
-  }
 }
 
 void drawGameOverScreen(){
@@ -88,9 +68,29 @@ void drawGameOverScreen(){
   text("voltar", 270, 275);
 }
 
-void gameLoop(){
+void gameLoop() {
   if(++counter >= speed) {
     drawGameScreen();
+    counter = 0;
+    
+    if(currentPiece.checkCollisionBelow()) {
+      pieces_counter++;
+      mainGrid.savePieceInGrid(currentPiece);
+      currentPiece = nextPiece;
+      currentPiece.changeGrid(mainGrid);
+      nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
+      mainGrid.update();
+      
+      if(currentPiece.checkCollisionBelow()){
+        gamoOver = true;
+      }
+      
+      if(pieces_counter % 5 == 0 && speed > 5){
+        speed--;
+      }
+    } else {
+      currentPiece.moveDown();
+    }
   }
 }
 

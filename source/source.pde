@@ -11,11 +11,11 @@ PImage imgMenu,imgConfig,imgCredito;
   
 void setup() {
   size(540, 540);
+  frameRate(30);
   imgMenu = loadImage("..\\img\\tela_menu.png");
   imgConfig = loadImage("..\\img\\tela_config.png");
   imgCredito = loadImage("..\\img\\tela_credito.png");
 }
-
 
 void draw() {
   
