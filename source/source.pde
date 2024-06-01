@@ -68,15 +68,16 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if(scren == screns.GAME){
+  if(scren == screns.GAME) {
     if (keyCode == LEFT) {
       currentPiece.moveLeft();
     } else if (keyCode == RIGHT) {
       currentPiece.moveHight();
+    } else if (keyCode == DOWN) {
+      currentPiece.moveAllDown();
+      counter = speed;
     } else if (keyCode == ' ') {
       currentPiece.rotate();
     }
-
-    drawGameScreen();
   }
 }

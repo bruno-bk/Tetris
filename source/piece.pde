@@ -30,6 +30,14 @@ class Piece {
       }
     }
   }
+  
+  void moveAllDown() {
+    int i = 1;
+    while(!checkCollision(x, y+i, shape)) {
+      i += 1;
+    }
+    move(0, i-1);
+  }
 
   void moveDown() {
     move(0, 1);

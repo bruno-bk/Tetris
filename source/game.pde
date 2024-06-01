@@ -3,7 +3,7 @@ int cols = 10;
 int rows = 18;
 
 int speed = 30;
-int counter = speed;
+int counter = 0;
 
 int pieces_counter = 0;
 
@@ -69,10 +69,9 @@ void drawGameOverScreen(){
 }
 
 void gameLoop() {
+  drawGameScreen();
   if(++counter >= speed) {
-    drawGameScreen();
     counter = 0;
-    
     if(currentPiece.checkCollisionBelow()) {
       pieces_counter++;
       mainGrid.savePieceInGrid(currentPiece);
@@ -99,7 +98,7 @@ void resetGame(){
   gamoOver = false;
   mainGrid.reset();
   speed = 30;
-  counter = speed;
+  counter = 0;
 }
 
 boolean isGameOver(){
