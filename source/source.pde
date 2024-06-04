@@ -3,14 +3,16 @@ import processing.sound.*;
 enum screns {
   MENU,
   RULES,
+  THEME,
   GAME,
   GAMEOVER,
   CREDITS
 }
 
 screns scren = screns.MENU;
-PImage imgMenu,imgConfig,imgCredito;
+PImage imgMenu,imgConfig,imgCredito,imgTema;
 PImage[] sprites = new PImage[6];
+int backgroundColor = 0;
 
 SoundFile pointSound;
 SoundFile gameOverSound;
@@ -22,7 +24,7 @@ void setup() {
   imgMenu = loadImage("..\\img\\tela_menu.png");
   imgConfig = loadImage("..\\img\\tela_config.png");
   imgCredito = loadImage("..\\img\\tela_credito.png");
-  
+  imgTema = loadImage("..\\img\\tela_tema.png");  
   
   pointSound = new SoundFile(this, "..\\sound\\plus_points.wav");
   gameOverSound = new SoundFile(this, "..\\sound\\game_over.wav");
@@ -41,6 +43,9 @@ void draw() {
   } else if(scren == screns.RULES){
     background(255);
     image(imgConfig, 0, 0);
+    
+  } else if(scren == screns.THEME){
+    image(imgTema, 0, 0);
 
   } else if (scren == screns.GAME){ 
       gameLoop();
@@ -59,7 +64,7 @@ void mousePressed() {
     if(mouseX > 187 && mouseX < 187 + 163  && mouseY > 198 && mouseY < 198 + 40){//JOGAR
     println("Botão Jogar pressionado");
       resetGame();
-      scren = screns.GAME;
+      scren = screns.THEME;
       backgroundMusic.loop(); 
       backgroundMusic.amp(0.25);
     } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 270 && mouseY < 270+40){//REGRAS
@@ -67,10 +72,18 @@ void mousePressed() {
     } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 160 && mouseY < 340+40){//CREDITO
       scren = screns.CREDITS;
     }    
-    
   
   } else if (scren == screns.RULES) {
     scren = screns.MENU;
+  
+  } else if (scren == screns.THEME) {
+    if(mouseX > 40 && mouseX < 40 + 157  && mouseY > 140 && mouseY < 140 + 245) {
+      backgroundColor = 0;
+      scren = screns.GAME;
+    } else if (mouseX > 333 && mouseX < 333 + 157  && mouseY > 140 && mouseY < 140 + 245) {
+      backgroundColor = 255;
+      scren = screns.GAME;
+    }
 
   } else if (scren == screns.GAMEOVER && mouseX > 120 && mouseX < 420 && mouseY > 240 && mouseY < 290){
     scren = screns.MENU;

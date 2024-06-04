@@ -30,7 +30,7 @@ int[][] randomPiece() {
 }
 
 void game_texts() {
-  fill(color(255));
+  fill(color(255-backgroundColor));
   textAlign(LEFT);
   textSize(25);
   String pont = "Pontuação: " + pieces_counter;
@@ -40,7 +40,7 @@ void game_texts() {
 }
 
 void drawGameScreen() {
-  background(0);
+  background(backgroundColor);
   game_texts();
   mainGrid.draw();
   mainGrid.drawSavedPieces();
