@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 enum screns {
   MENU,
   RULES,
@@ -9,6 +11,10 @@ enum screns {
 screns scren = screns.MENU;
 PImage imgMenu,imgConfig,imgCredito;
 PImage[] sprites = new PImage[6];
+
+SoundFile pointSound;
+SoundFile gameOverSound;
+SoundFile backgroundMusic;
   
 void setup() {
   size(540, 540);
@@ -16,6 +22,11 @@ void setup() {
   imgMenu = loadImage("..\\img\\tela_menu.png");
   imgConfig = loadImage("..\\img\\tela_config.png");
   imgCredito = loadImage("..\\img\\tela_credito.png");
+  
+  
+  pointSound = new SoundFile(this, "..\\sound\\plus_points.wav");
+  gameOverSound = new SoundFile(this, "..\\sound\\game_over.wav");
+  backgroundMusic = new SoundFile(this, "..\\sound\\ost.wav");
   for (int i = 0; i < sprites.length; i++) {
     sprites[i] = loadImage("..\\img\\sprite" + str(i+1) + ".jpg");
   }
@@ -49,6 +60,8 @@ void mousePressed() {
     println("Botão Jogar pressionado");
       resetGame();
       scren = screns.GAME;
+      backgroundMusic.loop(); 
+      backgroundMusic.amp(0.25);
     } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 270 && mouseY < 270+40){//REGRAS
       scren = screns.RULES;
     } else if (mouseX > 187 && mouseX < 187 + 163  && mouseY > 160 && mouseY < 340+40){//CREDITO

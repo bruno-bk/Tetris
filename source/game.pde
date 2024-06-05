@@ -15,6 +15,7 @@ Grid nextPieceGrid = new Grid(blockSize, 4, 3, 12*blockSize, 6*blockSize);
 Piece currentPiece = new Piece(randomPiece(), color(255, 0, 0), mainGrid);
 Piece nextPiece = new Piece(randomPiece(), color(255, 0, 0), nextPieceGrid);
 
+
 int[][] randomPiece() {
   int[][][] pieces = {
     { { 1, 1, 1, 1 } },
@@ -81,6 +82,9 @@ void gameLoop() {
       mainGrid.update();
       
       if(currentPiece.checkCollisionBelow()){
+        backgroundMusic.stop();
+        gameOverSound.play(); 
+        gameOverSound.amp(0.50);
         gamoOver = true;
       }
       

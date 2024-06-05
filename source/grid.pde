@@ -64,6 +64,8 @@ class Grid {
       }
 
       if(removeLine){
+        pointSound.play();
+        pointSound.amp(0.5);
         i--;
         for (int k = i; k >= 0; k--) {
           for (int l = 0; l < cols; l++) {
