@@ -54,7 +54,19 @@ class Grid {
     }
   }
   
-  void update() {
+  void resetBlock(int line, int col) {
+    grid[line][col] = 0;
+  }
+  
+  void updateRemovedLine(int line) {
+    for (int k = line; k >= 1; k--) {
+      for (int l = 0; l < cols; l++) {
+        grid[k][l] = grid[k-1][l];
+      }
+    }
+  }
+  
+  int completedLine() {
     for (int i = 0; i < rows; i++) {
       boolean removeLine = true;
       for (int j = 0; j < cols; j++) {
@@ -64,15 +76,9 @@ class Grid {
       }
 
       if(removeLine){
-        pointSound.play();
-        pointSound.amp(0.5);
-        i--;
-        for (int k = i; k >= 0; k--) {
-          for (int l = 0; l < cols; l++) {
-            grid[k+1][l] = grid[k][l];
-          }
-        }
+        return i--;
       }
     }
+    return 0;
   }
 }
