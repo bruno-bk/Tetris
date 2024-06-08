@@ -1,5 +1,4 @@
 import processing.sound.*;
-
 enum screns {
   MENU,
   RULES,
@@ -43,6 +42,7 @@ void draw() {
   } else if(scren == screns.RULES){
     background(255);
     image(imgConfig, 0, 0);
+    mostrarRegras();
     
   } else if(scren == screns.THEME){
     image(imgTema, 0, 0);
@@ -56,6 +56,7 @@ void draw() {
    } else if(scren == screns.CREDITS){
     background(255);
     image(imgCredito, 0, 0);
+    mostrarCreditos();
   }
 }
 
@@ -74,7 +75,13 @@ void mousePressed() {
     }    
   
   } else if (scren == screns.RULES) {
-    scren = screns.MENU;
+    int buttonX = 155;
+    int buttonY = 432;
+    int buttonWidth = 35;
+    int buttonHeight = 30;
+    if(mouseX > buttonX && mouseX < buttonX + buttonWidth  && mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+      scren = screns.MENU;
+    }
   
   } else if (scren == screns.THEME) {
     if(mouseX > 40 && mouseX < 40 + 157  && mouseY > 140 && mouseY < 140 + 245) {
@@ -89,10 +96,15 @@ void mousePressed() {
     scren = screns.MENU;
   
   } else if (scren == screns.CREDITS) {
-    scren = screns.MENU;
-  }
+    int buttonX = 155;
+    int buttonY = 432;
+    int buttonWidth = 35;
+    int buttonHeight = 30;
+    if(mouseX > buttonX && mouseX < buttonX + buttonWidth  && mouseY > buttonY && mouseY < buttonY + buttonHeight) {
+      scren = screns.MENU;
+    }
 }
-
+}
 void keyPressed() {
   if(scren == screns.GAME) {
     if (keyCode == LEFT) {
@@ -106,4 +118,38 @@ void keyPressed() {
       currentPiece.rotate();
     }
   }
+}
+void mostrarRegras() {
+  image(imgConfig, 0, 0); // Desenhe a imagem de configuração como fundo
+  fill(255); // Defina a cor do texto como branco
+  textAlign(CENTER);
+  textSize(20);
+  text("HISTÓRIA", width/2 + 10, 100); // Título da história
+  textSize(14);
+  // Texto da história
+  text("Bob, um Construtor de Matriz, é convoca-\ndo para salvar Tetraland do caos.", width/2 + 10, 120);
+  text("Ele deve reconstruir o Coração da Matriz, \numa estrutura mágica que mantém o \nequilíbrio do mundo digital,", width/2 + 10, 160);
+  text("usando Tetrominos, enquanto enfrenta a \nameaça da Desorganização liderada \npor erro.", width/2 + 10, 220);
+  text("Ao restaurar a harmonia, ele é celebrado \ncomo o herói de Tetraland.", width/2 + 10, 280);
+  
+  // Título dos controles
+  textSize(20);
+  text("CONTROLES", width/2 + 10, 330); // Título dos controles
+  // Texto dos controles
+  textSize(14);
+  text("Setas direcionais: Movem o Tetromino \npara a esquerda ou direita.", width/2 + 10, 350);
+  text("Barra de espaço: Realiza a rotação do\n Tetromino.", width/2 + 10, 380);
+  text("Tecla de queda rápida (seta para baixo): \n Faz o Tetromino cair instantaneamente  \naté a base.", width/2 + 10, 410);
+}
+
+void mostrarCreditos() {
+  image(imgConfig, 0, 0); // Desenhe a imagem de configuração como fundo
+  fill(255); // Defina a cor do texto como branco
+  textSize(20);
+  textAlign(CENTER);
+  text("", width/2 + 10, 50); // Ajuste de posição com deslocamento para a direita
+  textSize(14);
+  text("Desenvolvido por: \nBruno Bilhar Karaziack, \nDaniel de Oliveira Domingos, \nMurilo Luciano dos Santos, \nTomaz de Aquino Ribeiro Junior.", width/2 + 10, 100);
+  text("Ano de Criação: 2024.\nInspiração: Tetris, \n(criado por Alexey Pajitnov)", width/2 + 10, 410);
+  // Adicione mais créditos aqui, se necessário
 }
