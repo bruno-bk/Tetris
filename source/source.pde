@@ -143,7 +143,7 @@ void mostrarRegras() {
 }
 
 void mostrarCreditos() {
-  image(mostrarCreditos, 0, 0); // Desenhe a imagem de configuração como fundo
+  image(imgCredito, 0, 0); // Desenhe a imagem de configuração como fundo
   fill(255); // Defina a cor do texto como branco
   textSize(20);
   textAlign(CENTER);
