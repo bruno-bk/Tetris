@@ -11,14 +11,20 @@ O jogo foi criado como parte das atividades da disciplina de Computação Visual
 
 - Movimento das peças usando as setas do teclado.
 - Rotação das peças usando o teclado.
+- Movimento rápido das peças para a posição final.
 - Detecção de colisão com as bordas e outras peças.
 - Interface gráfica simples com uma grade.
+- Efeitos sonoros.
 
 ## Instalação
 
 Para executar este projeto, você precisará ter a IDE Processing instalada. Siga os passos abaixo para configurar o ambiente:
 
-1. Baixe e [IDE Processing](https://processing.org/download/).
+1. Baixe o [IDE Processing](https://processing.org/download/).
+2. Abra o IDE Processing.
+3. Instale a biblioteca de som:
+   - Vá para `Sketch -> Import Library... -> Manage Libraries...`.
+   - Na janela que se abrir, procure por `Sound` e clique em `Install`.
 2. Clone este repositório ou baixe o código fonte.
 3. Abra o arquivo principal do projeto (`source/source.pde`) na IDE Processing.
 4. Clique no botão de execução para iniciar o jogo.
@@ -26,6 +32,7 @@ Para executar este projeto, você precisará ter a IDE Processing instalada. Sig
 ## Como Jogar
 
 - Use as setas esquerda e direita para mover a peça horizontalmente.
+- Use a seta para baixo para mover a peça para sua posição final.
 - Use o espaço para girar a peça.
 
 ## Autores
